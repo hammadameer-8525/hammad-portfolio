@@ -160,7 +160,7 @@ export default function Hero() {
             <div className="relative h-full w-full overflow-hidden rounded-[28px] border border-champagne/25 bg-elevated shadow-[0_0_0_1px_rgba(255,138,0,0.08),0_40px_80px_-20px_rgba(0,0,0,0.7)]">
               <div className="pointer-events-none absolute inset-0 z-10 rounded-[28px] shadow-[inset_0_0_60px_rgba(255,138,0,0.12)]" />
               <Image
-                src="/images/profile.png.png"
+                src="/images/profile-new.png.png"
                 alt="Portrait of Hammad Ameer"
                 fill
                 priority
