@@ -18,18 +18,42 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 1800);
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    // No backend service is connected yet. We open a pre-filled mail draft
-    // instead of pretending a message was sent — wire up an API route or
-    // form service (see README) to make this a true async submit.
-    const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(
-      form.subject || `Portfolio message from ${form.name}`
-    )}&body=${encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)}`;
-    window.location.href = mailto;
-    setTimeout(() => setStatus("success"), 600);
-  };
+  const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+  setStatus("loading");
+
+  try {
+    const response = await fetch("https://formspree.io/f/mzdngrrw", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+  ...form,
+  submittedAtPKT: new Date().toLocaleString("en-PK", {
+    timeZone: "Asia/Karachi",
+    dateStyle: "medium",
+    timeStyle: "medium",
+  }),
+}),
+    });
+
+    if (response.ok) {
+      setStatus("success");
+      setForm({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } else {
+      setStatus("error");
+    }
+  } catch {
+    setStatus("error");
+  }
+};
 
   return (
     <section id="contact" className="relative mx-auto max-w-6xl px-5 py-28 md:px-8 md:py-36">
@@ -168,15 +192,20 @@ export default function Contact() {
             <ArrowUpRight size={14} />
           </button>
           {status === "success" && (
-            <p className="mt-3 text-xs text-emerald">
-              Your mail client should be opening now with your message ready to send.
-            </p>
-          )}
-          <p className="mt-3 text-[11px] leading-relaxed text-text-muted">
-            This form opens a pre-filled email draft. To collect submissions
-            directly, connect a form service (e.g. Formspree) or an API route —
-            see the README for setup.
-          </p>
+  <p className="mt-3 text-xs text-emerald">
+    Message sent successfully. Thank you — I’ll get back to you soon.
+  </p>
+)}
+
+{status === "error" && (
+  <p className="mt-3 text-xs text-coral">
+    Something went wrong. Please try again.
+  </p>
+)}
+
+<p className="mt-3 text-[11px] leading-relaxed text-text-muted">
+  Your message will be sent directly and securely through this contact form.
+</p>
         </motion.form>
       </div>
     </section>
