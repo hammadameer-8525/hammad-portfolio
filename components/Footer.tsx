@@ -1,0 +1,1 @@
+export default function Footer(){return <footer><div className="shell premium-footer"><a className="footer-monogram" href="#home" aria-label="Back to top">HA</a><p>© {new Date().getFullYear()} Hammad Ameer</p><strong>Build <i/> Learn <i/> Grow</strong><span><b/>Available for opportunities</span></div></footer>}

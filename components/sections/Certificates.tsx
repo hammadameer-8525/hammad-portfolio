@@ -1,0 +1,3 @@
+import { Award } from "lucide-react";
+import { certifications } from "@/lib/data";
+export default function Certificates(){return <section id="certificates" className="section clean-section"><div className="shell"><div className="section-heading clean-heading"><p><b>05</b> — CERTIFICATES</p><h2>Structured learning.<br/><span>Details coming soon.</span></h2></div><div className="certificate-list">{certifications.map((item,index)=><article key={item.title}><Award aria-hidden="true"/><span>0{index+1}</span><div><h3>{item.title}</h3><p>{item.issuer}</p><small>Certificate details and file pending.</small></div></article>)}</div></div></section>}

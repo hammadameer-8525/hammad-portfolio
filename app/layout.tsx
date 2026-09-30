@@ -1,0 +1,4 @@
+import type { Metadata } from "next"; import "./globals.css"; import { getSiteUrl } from "@/lib/site";
+const title="Hammad Ameer | Software Engineering Portfolio"; const description="Portfolio of Hammad Ameer, a Software Engineering student building practical software and exploring intelligent systems.";
+export const metadata:Metadata={metadataBase:new URL(getSiteUrl()),title,description,keywords:["Hammad Ameer","Software Engineering Student","Software Developer","Full-Stack Developer","University of Central Punjab"],authors:[{name:"Hammad Ameer"}],creator:"Hammad Ameer",openGraph:{title,description,type:"website",locale:"en_US",siteName:"Hammad Ameer Portfolio"},twitter:{card:"summary",title,description},alternates:{canonical:"/"},icons:{icon:"/favicon.ico"},robots:{index:true,follow:true}};
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body>{children}</body></html>}

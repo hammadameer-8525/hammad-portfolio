@@ -1,0 +1,3 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+import { Trophy } from "lucide-react"; import { achievement, journey } from "@/lib/data";
+export default function Achievements(){return <section className="section achievement-section" aria-labelledby="achievement-title"><div className="shell"><div className="achievement-card"><div className="trophy"><span>06</span><Trophy/></div><div><p><b>06.</b> ACHIEVEMENT UNLOCKED</p><h2 id="achievement-title">{achievement.title}</h2><span>{achievement.institution}</span><p>{achievement.description}</p></div></div><div className="journey"><p>// ENGINEERING JOURNEY</p><ol>{journey.map((step,i)=><li key={step}><b>{String(i+1).padStart(2,"0")}</b><span>{step}</span></li>)}</ol></div></div></section>}
